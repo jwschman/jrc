@@ -1,0 +1,47 @@
+/* 
+ * Stylesheet for Jailhouse Roll Call
+ * Generated entirely by ChatGPT
+ * Date: October 25, 2024
+ */
+
+/* Center the title */
+.title {
+    text-align: center;
+    font-size: 2em; /* Adjust as needed */
+    margin: 20px 0; /* Adds some space around the title */
+}
+
+/* Set the background of the entire page to black and text to white */
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the table on the page */
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%; /* Optional: Adjust width as needed */
+}
+
+/* Style the table headers */
+th {
+    text-align: center;
+    padding: 10px;
+    background-color: #333; /* Dark background for table headers */
+    color: white;
+    border: 1px solid #555; 
+}
+
+/* Style the table cells */
+td {
+    text-align: center; /* Center-align all table cells */
+    padding: 10px;
+    border: 1px solid #555; /
+}
+
+/* Different color for even rows */
+tr:nth-child(even) {
+    background-color: #222;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Jailhouse Roll Call</title>
+        <link rel="stylesheet" href="/static/stylesheets/main.css" />
+        <script>
+            /* 
+             * Sorting function for table columns
+             * Created using ChatGPT
+             * Date: October 25, 2024
+             */
+             
+            // Function to sort the table by a specific column
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("jailTable");
+                switching = true;
+                // Set the sorting direction to ascending initially
+                dir = "asc"; 
+                
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    // Loop through all table rows (except the first, which contains table headers)
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        // Compare the two elements in the column
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        // Check if the two rows should switch place based on sorting direction
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        // Swap rows and mark that a switch has been done
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        switchcount++;
+                    } else {
+                        // If no switching has been done and the direction is "asc", set it to "desc" and run again
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+<body>
+    <h1 class="title">Jailhouse Roll Call</h1> 
+    <table id="jailTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">ID</th>
+                <th onclick="sortTable(1)">Name</th>
+                <th onclick="sortTable(2)">Status</th>
+                <th onclick="sortTable(3)">Release</th>
+                <th onclick="sortTable(4)">Address</th>
+                <th onclick="sortTable(5)">Last Started</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range . }}
+            <tr>
+                <td>{{ .Id }}</td>
+                <td>{{ .Name }}</td>
+                <td>{{ .Status }}</td>
+                <td>{{ .Release }}</td>
+                <td>{{ .Address }}</td>
+                <td>{{ .LastStarted }}</td>
+            </tr>
+            {{ else }}
+            <tr>
+                <td colspan="6" style="text-align: center;">No jails found</td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</body>
+</html>
