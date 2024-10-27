@@ -3,6 +3,8 @@
 
 A simple Go application to retrieve and display information about jails from a TrueNAS server.  Makes an API call to fetch jail details, processes the returned data, and serves it in an HTML table on a local web server.
 
+![Screenshot of Jailhouse Roll Call](images/jrc_screenshot.png)
+
 ## Prerequisites
 
 - **Go**: Ensure Go is installed on your machine.
